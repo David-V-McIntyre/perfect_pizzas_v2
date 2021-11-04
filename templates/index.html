@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{{title}}</title>
+</head>
+<body>
+    <nav>
+        <ul>
+          <li clas="navLink"><a href="/orders">Home</a></li>
+        </ul>
+      </nav>
+      <hr>
+      <h1>Perfect Pizzas</h1>
+    
+      <div class="order-container">
+        {% for order in orders %}
+        <div class="order">
+          <h2>{{ order.customer_name }}</h2>
+          <h3>number of pizzas: {{ order.quantity }}</h3>
+          <h4>When: {{ order.order_date.strftime("%b %d %Y") }}</h4>
+          <h5>Order number: {{ order.order_number }}</h5>
+          <a href="/orders/{{orders.index(order)}}">Show Order</a>
+        </div>
+        {% endfor %}
+      </div>
+
+</html>
